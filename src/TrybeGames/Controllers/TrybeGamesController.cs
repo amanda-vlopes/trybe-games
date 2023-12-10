@@ -123,46 +123,42 @@ public class TrybeGamesController
     // 1. Crie a funcionalidde para adicionar uma nova pessoa jogadora ao banco de dados
     public void AddPlayer()
     {
-        try
-        {
-            List<Player> players = database.Players;
-            int lastId = players.Count;
+        int lastId = database.Players.Count;
 
-            Console.WriteLine("Digite o nome do jogador:");
-            string playerName = Console.ReadLine();
+        Console.WriteLine("Digite o nome do jogador:");
+        string playerName = Console.ReadLine();
 
-            players.Add(new Player { Id = lastId + 1, Name = playerName });
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+        database.Players.Add(new Player { Id = lastId + 1, Name = playerName });
     }
 
     // 2. Crie a funcionalidade de adicionar um novo estúdio de jogos ao banco de dados
     public void AddGameStudio()
     {
-        try
-        {
-            List<GameStudio> gameStudios = database.GameStudios;
-            int lastId = gameStudios.Count;
+        int lastId = database.GameStudios.Count;
 
-            Console.WriteLine("Digite o nome do novo Estúdio de Jogos:");
-            string gameStudioName = Console.ReadLine();
+        Console.WriteLine("Digite o nome do novo Estúdio de Jogos:");
+        string gameStudioName = Console.ReadLine();
 
-            gameStudios.Add(new GameStudio { Id = lastId + 1, Name = gameStudioName });
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+        database.GameStudios.Add(new GameStudio { Id = lastId + 1, Name = gameStudioName });
     }
 
     // 3. Crie a funcionalidade de adicionar novo Jogo ao Banco de dados
     public void AddGame()
     {
-        // implementar
-        Console.WriteLine("Ainda não é possível realizar essa funcionalidade!");
+        int lastId = database.Games.Count;
+
+        Console.WriteLine("Digite o nome do novo Jogo:");
+        string gameName = Console.ReadLine();
+
+        Console.WriteLine("Digite o ano de lançamento do jogo (dd/mm/aaaa):");
+        DateTime gameRelease = DateTime.Parse(Console.ReadLine());
+
+        Console.WriteLine("Digite o número referente ao tipo do jogo:");
+        PrintGameTypes();
+
+        int numberChosen = int.Parse(Console.ReadLine() ?? "0");
+
+        database.Games.Add(new Game { Id = lastId + 1, Name = gameName, ReleaseDate = gameRelease, GameType = (GameType)numberChosen });
     }
 
     public void ChangeGameStudio(Game game)
