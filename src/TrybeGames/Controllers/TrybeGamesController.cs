@@ -152,7 +152,11 @@ public class TrybeGamesController
         string gameName = Console.ReadLine();
 
         Console.WriteLine("Digite o ano de lançamento do jogo (dd/mm/aaaa):");
-        DateTime gameDate = DateTime.Parse(Console.ReadLine());
+            if (!DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime gameDate))
+    {
+        Console.WriteLine("Formato de data inválido. Utilize o formato dd/MM/yyyy.");
+        return;
+    }
         DateTime gameRelease = new DateTime(gameDate.Year, gameDate.Month, gameDate.Day);
 
         Console.WriteLine("Digite o número referente ao tipo do jogo:");
