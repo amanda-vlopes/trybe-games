@@ -123,6 +123,7 @@ public class TrybeGamesController
     // 1. Crie a funcionalidde para adicionar uma nova pessoa jogadora ao banco de dados
     public void AddPlayer()
     {
+
         int lastId = database.Players.Count;
 
         Console.WriteLine("Digite o nome do jogador:");
@@ -151,7 +152,8 @@ public class TrybeGamesController
         string gameName = Console.ReadLine();
 
         Console.WriteLine("Digite o ano de lançamento do jogo (dd/mm/aaaa):");
-        DateTime gameRelease = DateTime.Parse(Console.ReadLine());
+        DateTime gameDate = DateTime.Parse(Console.ReadLine());
+        DateTime gameRelease = new DateTime(gameDate.Year, gameDate.Month, gameDate.Day);
 
         Console.WriteLine("Digite o número referente ao tipo do jogo:");
         PrintGameTypes();
